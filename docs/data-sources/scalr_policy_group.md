@@ -36,7 +36,7 @@ All arguments plus:
 * `vcs_repo` - Contains VCS-related meta-data the policy group is created from.
 * `policies` - A list of the OPA policies the policy group verifies each run.
 * `environments` - A list of the environments the policy group is linked to.
-* `workspaces` - A list of the workspaces the this policy group verify runs for.
+* `workspaces` - A list of the workspaces this policy group verify runs for.
 
 The `vcs_repo` object contains:
 

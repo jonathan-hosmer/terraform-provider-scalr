@@ -39,7 +39,7 @@ func resourceScalrPolicyGroupLinkageImport(d *schema.ResourceData, meta interfac
 
 	id := d.Id()
 
-	policyGroup, environment, err := getLinkedResources(id, scalrClient)
+	policyGroup, environment, err := getLinkedGroupEnvironment(id, scalrClient)
 	if err != nil {
 		if errors.Is(err, scalr.ErrResourceNotFound{}) {
 			return nil, fmt.Errorf("policy group linkage %s not found", id)
@@ -86,7 +86,7 @@ func resourceScalrPolicyGroupLinkageRead(d *schema.ResourceData, meta interface{
 
 	id := d.Id()
 
-	policyGroup, environment, err := getLinkedResources(id, scalrClient)
+	policyGroup, environment, err := getLinkedGroupEnvironment(id, scalrClient)
 	if err != nil {
 		if errors.Is(err, scalr.ErrResourceNotFound{}) {
 			log.Printf("[DEBUG] Policy group linkage %s not found", id)
@@ -107,7 +107,7 @@ func resourceScalrPolicyGroupLinkageDelete(d *schema.ResourceData, meta interfac
 
 	id := d.Id()
 
-	policyGroup, environment, err := getLinkedResources(id, scalrClient)
+	policyGroup, environment, err := getLinkedGroupEnvironment(id, scalrClient)
 	if err != nil {
 		if errors.Is(err, scalr.ErrResourceNotFound{}) {
 			log.Printf("[DEBUG] Policy group linkage %s not found", id)
@@ -133,9 +133,9 @@ func resourceScalrPolicyGroupLinkageDelete(d *schema.ResourceData, meta interfac
 	return nil
 }
 
-// getLinkedResources verifies existence of the linkage
+// getLinkedGroupEnvironment verifies existence of the linkage
 // and returns associated policy group and environment.
-func getLinkedResources(id string, scalrClient *scalr.Client) (
+func getLinkedGroupEnvironment(id string, scalrClient *scalr.Client) (
 	policyGroup *scalr.PolicyGroup, environment *scalr.Environment, err error,
 ) {
 	pgID, envID, err := unpackPolicyGroupLinkageID(id)
