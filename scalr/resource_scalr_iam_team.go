@@ -42,6 +42,7 @@ func resourceScalrIamTeam() *schema.Resource {
 			"users": {
 				Type:     schema.TypeList,
 				Optional: true,
+				Computed: true,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
 		},
