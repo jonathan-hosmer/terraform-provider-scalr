@@ -1,0 +1,37 @@
+name: upstream
+
+on:
+  workflow_dispatch:
+    inputs:
+      upstream-sha:
+        description: "Upstream commit SHA"
+        required: true
+      api-branch:
+        description: "API Branch"
+        required: true
+      db-branch:
+        description: "DB Branch"
+        required: false
+        default: "master"
+
+jobs:
+  acc-tests:
+    runs-on: ubuntu-latest
+    name: acc-tests
+    env:
+      REVIZOR_URL: ${{ secrets.REVIZOR_URL }}
+      REVIZOR_TOKEN: ${{ secrets.REVIZOR_TOKEN }}
+      ORG_ADMIN_TOKEN: ${{ secrets.ORG_ADMIN_TOKEN }}
+      SCALR_TOKEN: ${{ secrets.SCALR_TOKEN }}
+      API_BRANCH: ${{ github.event.inputs.api-branch }}
+      DB_BRANCH: ${{ github.event.inputs.db-branch }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-go@v2
+        with:
+          go-version: "1.13"
+      - name: Run acceptance tests
+        env:
+          SCALR_HOSTNAME: ${{ steps.create.outputs.hostname }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: echo "Hello from upstream2"
