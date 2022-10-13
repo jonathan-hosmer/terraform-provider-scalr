@@ -40,7 +40,7 @@ func dataSourceScalrIamUser() *schema.Resource {
 			},
 			"teams": {
 				Type:     schema.TypeList,
-				Computed: false,
+				Computed: true,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
 		},
@@ -91,6 +91,7 @@ func dataSourceScalrIamUserRead(d *schema.ResourceData, meta interface{}) error 
 	d.Set("teams", teams)
 
 	d.SetId(u.ID)
+	log.Printf("[DEBUG] Read configuration of iam user %s is done", email)
 
 	return nil
 }
