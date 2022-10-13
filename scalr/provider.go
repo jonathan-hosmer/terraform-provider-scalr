@@ -68,6 +68,7 @@ func Provider() terraform.ResourceProvider {
 			"scalr_endpoint":                dataSourceScalrEndpoint(),
 			"scalr_environment":             dataSourceScalrEnvironment(),
 			"scalr_iam_team":                dataSourceScalrIamTeam(),
+			"scalr_iam_user":                dataSourceScalrIamUser(),
 			"scalr_module_version":          dataSourceModuleVersion(),
 			"scalr_policy_group":            dataSourceScalrPolicyGroup(),
 			"scalr_provider_configuration":  dataSourceScalrProviderConfiguration(),
