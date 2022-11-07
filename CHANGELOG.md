@@ -39,6 +39,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - scalr-server >= `8.31.0`
 
+### Deprecated
+
+- `scalr_environment`: attribute `cloud_credentials` has been deprecated ([#190](https://github.com/Scalr/terraform-provider-scalr/pull/190))
+
 ## [1.0.0-rc35] - 2022-08-05
 
 ### Added
